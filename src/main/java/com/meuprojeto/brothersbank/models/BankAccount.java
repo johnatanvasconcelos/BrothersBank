@@ -1,5 +1,7 @@
 package com.meuprojeto.brothersbank.models;
 
+import com.meuprojeto.brothersbank.exception.InsufficientFundsException;
+
 public class BankAccount {
     private String accountNumber;
     private Double balance;
@@ -10,10 +12,17 @@ public class BankAccount {
     }
 
     public void withdraw(double value){
-        setBalance(getBalance() - value);
+        if (getBalance() >= value){
+            setBalance(getBalance() - value);
+        } else{
+            throw new InsufficientFundsException("Saldo insuficiente");
+        }
     }
 
     public void deposit(double value){
+        if (value <= 0 ){
+            throw new IllegalArgumentException("Valor de depósito inválido");
+        }
         setBalance(getBalance() + value);
     }
 
