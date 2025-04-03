@@ -1,14 +1,17 @@
 package com.meuprojeto.brothersbank.models;
 
-public class SavingsAccount extends BankAccount{
-    public static final double YIELD = 0.005;
+import java.math.BigDecimal;
 
-    public SavingsAccount(String accountNumber, Double balance) {
+public class SavingsAccount extends BankAccount{
+    public static final BigDecimal YIELD = new BigDecimal("0.005");
+
+    public SavingsAccount(String accountNumber, BigDecimal balance) {
         super(accountNumber, balance);
     }
 
     public void implementYield(){
-        setBalance(getBalance() + getBalance() * YIELD);
+        BigDecimal yield = getBalance().multiply(YIELD);
+        setBalance(getBalance().add(yield));
     }
 
 }

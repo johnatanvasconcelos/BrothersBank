@@ -1,15 +1,17 @@
 package com.meuprojeto.brothersbank.models;
 
-public class CheckingAccount extends BankAccount{
-    public static final double MAINTENANCE_FEE = 10.0;
+import java.math.BigDecimal;
 
-    public CheckingAccount(String accountNumber, Double balance) {
-        super(accountNumber, balance);
+public class CheckingAccount extends BankAccount{
+    public static final BigDecimal MAINTENANCE_FEE = new BigDecimal("10.00");
+
+    public CheckingAccount(String ownerName, BigDecimal balance) {
+        super(ownerName, balance);
     }
 
     public void collectMaintenanceCharge(){
-        if (getBalance() >= MAINTENANCE_FEE){
-            setBalance(getBalance() - MAINTENANCE_FEE);
+        if (getBalance().compareTo(MAINTENANCE_FEE) >= 0){
+            setBalance(getBalance().subtract(MAINTENANCE_FEE));
         }else {
             throw new IllegalArgumentException("Saldo insuficiente para coletar a taxa de manutenção.");
         }

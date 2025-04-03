@@ -2,44 +2,55 @@ package com.meuprojeto.brothersbank.models;
 
 import com.meuprojeto.brothersbank.exception.InsufficientFundsException;
 
-public class BankAccount {
-    private String accountNumber;
-    private Double balance;
+import java.math.BigDecimal;
 
-    public BankAccount(String accountNumber, Double balance) {
+public class BankAccount {
+    private Long id;
+    private Long accountNumber;
+    private final String ownerName;
+    private BigDecimal balance;
+
+    public BankAccount(String ownerName, BigDecimal balance) {
+        this.ownerName = ownerName;
+        this.balance = balance;
+    }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setAccountNumber(Long accountNumber) {
         this.accountNumber = accountNumber;
+    }
+
+    public void setBalance(BigDecimal balance) {
         this.balance = balance;
     }
 
-    public void withdraw(double value){
-        if (getBalance() >= value){
-            setBalance(getBalance() - value);
-        } else{
-            throw new InsufficientFundsException("Saldo insuficiente");
-        }
-    }
-
-    public void deposit(double value){
-        if (value <= 0 ){
-            throw new IllegalArgumentException("Valor de depósito inválido");
-        }
-        setBalance(getBalance() + value);
-    }
-
-    public String getAccountNumber() {
+    public Long getAccountNumber() {
         return accountNumber;
     }
 
-    public void setAccountNumber(String accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-    public Double getBalance() {
+    public BigDecimal getBalance() {
         return balance;
     }
 
-    public void setBalance(Double balance) {
-        this.balance = balance;
+    public String getOwnerName() {
+        return ownerName;
     }
 
+    @Override
+    public String toString() {
+        return "ID: " +
+                getId() +
+                " | " +
+                "Proprietário: "
+                + getOwnerName() +
+                " | " +
+                "Saldo na conta: R$ " +
+                getBalance();
+    }
 }
