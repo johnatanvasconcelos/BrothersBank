@@ -1,4 +1,4 @@
-package com.meuprojeto.brothersbank.exception;
+package br.com.john.brothersbank.exception;
 
 public class InsufficientFundsException extends RuntimeException {
     public InsufficientFundsException(String message) {

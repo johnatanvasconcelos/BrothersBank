@@ -1,11 +1,11 @@
-package com.meuprojeto.brothersbank.service;
+package br.com.john.brothersbank.service;
 
-import com.meuprojeto.brothersbank.models.BankAccount;
+import br.com.john.brothersbank.models.BankAccount;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface AccountService {
+public interface IAccountService {
     BankAccount createAccount(BankAccount account);
     Optional<BankAccount> getAccountById(Long id);
     List<BankAccount> getAllAccounts();

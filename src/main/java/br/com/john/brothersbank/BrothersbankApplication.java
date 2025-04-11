@@ -1,10 +1,9 @@
-package com.meuprojeto.brothersbank;
+package br.com.john.brothersbank;
 
-import com.meuprojeto.brothersbank.config.StartupRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = "com.meuprojeto.brothersbank")
+@SpringBootApplication
 public class BrothersbankApplication{
 
 	public static void main(String[] args) {

@@ -1,7 +1,9 @@
-package com.meuprojeto.brothersbank.config;
+package br.com.john.brothersbank.config;
 
-import com.meuprojeto.brothersbank.models.BankAccount;
-import com.meuprojeto.brothersbank.service.AccountService;
+import br.com.john.brothersbank.models.BankAccount;
+import br.com.john.brothersbank.models.CheckingAccount;
+import br.com.john.brothersbank.models.SavingsAccount;
+import br.com.john.brothersbank.service.IAccountService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -10,9 +12,9 @@ import java.math.BigDecimal;
 @Component
 public class StartupRunner implements CommandLineRunner {
 
-    private final AccountService accountService;
+    private final IAccountService accountService;
 
-    public StartupRunner(AccountService accountService) {
+    public StartupRunner(IAccountService accountService) {
         this.accountService = accountService;
     }
 
@@ -20,11 +22,11 @@ public class StartupRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         BankAccount accountOne =
                 accountService.createAccount(
-                        new BankAccount("João Silva", new BigDecimal("60000"))
+                        new SavingsAccount("João Silva")
                 );
         BankAccount accountTwo =
                 accountService.createAccount(
-                        new BankAccount("José Souza", new BigDecimal("40000"))
+                        new CheckingAccount("José Souza")
                 );
 
         System.out.println(accountOne);
