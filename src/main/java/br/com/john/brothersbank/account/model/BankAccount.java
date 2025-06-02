@@ -1,28 +1,43 @@
 package br.com.john.brothersbank.account.model;
 
 import jakarta.persistence.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 @Entity
 @Table(name = "bank_account")
+@Getter
+@EqualsAndHashCode(of = "id")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class BankAccount {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long accountNumber;
+    @Column(name = "account_number", unique = true)
+    private String accountNumber;
 
-    private final String ownerName;
+    @Column(name = "agency_number")
+    private String agencyNumber;
 
     private BigDecimal balance;
 
-    public BankAccount(String ownerName) {
-        this.ownerName = ownerName;
-    }
+    @Enumerated(EnumType.STRING)
+    private AccountType typeAccount;
+
+    @Column(name = "owner_name")
+    private String ownerName;
+
+    @Column(unique = true)
+    private String cpf;
+
+    @Column(name = "daily_withdraw_limit")
+    private BigDecimal dailyWithdrawLimit;
+
 
     public void deposit(BigDecimal amount){
         validateAmount(amount);
@@ -54,47 +69,5 @@ public abstract class BankAccount {
 
     protected void subtractFromBalance(BigDecimal amount){
         this.balance = this.balance.subtract(amount).setScale(2, RoundingMode.HALF_UP);
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setAccountNumber(Long accountNumber) {
-        this.accountNumber = accountNumber;
-    }
-
-    public Long getAccountNumber() {
-        return accountNumber;
-    }
-
-    public BigDecimal getBalance() {
-        return balance;
-    }
-
-    public String getOwnerName() {
-        return ownerName;
-    }
-
-    public String getFormattedAccountNumber(){
-        String number = String.format("%06d", this.accountNumber);
-        String base = number.substring(0, 5);
-        String digit = number.substring(5);
-
-        return base + "-" + digit;
-    }
-
-    @Override
-    public String toString() {
-        return "Número da conta: " +
-                getFormattedAccountNumber() +
-                " | " +
-                "Proprietário: "
-                + getOwnerName() +
-                " | ";
     }
 }

@@ -10,12 +10,6 @@ import java.math.BigDecimal;
 @Table(name = "checking_account")
 public class CheckingAccount extends BankAccount {
     public static final BigDecimal MAINTENANCE_FEE = new BigDecimal("10.00");
-    private static final AccountType typeAccount = AccountType.CHECKING_ACCOUNT;
-
-
-    public CheckingAccount(String ownerName) {
-        super(ownerName);
-    }
 
     public void collectMaintenanceCharge(){
         if (getBalance().compareTo(MAINTENANCE_FEE) >= 0){
@@ -23,10 +17,5 @@ public class CheckingAccount extends BankAccount {
         }else {
             throw new InsufficientFundsException("Saldo insuficiente para coletar a taxa de manutenção.");
         }
-    }
-
-    @Override
-    public String toString() {
-        return super.toString() + " | Tipo: " + typeAccount;
     }
 }
