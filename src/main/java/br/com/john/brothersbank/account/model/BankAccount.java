@@ -1,12 +1,23 @@
-package br.com.john.brothersbank.models;
+package br.com.john.brothersbank.account.model;
+
+import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+@Entity
+@Table(name = "bank_account")
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class BankAccount {
+
+    @Id
+    @GeneratedValue
     private Long id;
+
     private Long accountNumber;
+
     private final String ownerName;
+
     private BigDecimal balance;
 
     public BankAccount(String ownerName) {

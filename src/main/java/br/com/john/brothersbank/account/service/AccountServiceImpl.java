@@ -1,8 +1,8 @@
-package br.com.john.brothersbank.service.impl;
+package br.com.john.brothersbank.account.service;
 
-import br.com.john.brothersbank.models.BankAccount;
-import br.com.john.brothersbank.service.IAccountNumberGenerator;
-import br.com.john.brothersbank.service.IAccountService;
+import br.com.john.brothersbank.account.model.BankAccount;
+import br.com.john.brothersbank.account.service.impl.IAccountNumberGenerator;
+import br.com.john.brothersbank.account.service.impl.IAccountService;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

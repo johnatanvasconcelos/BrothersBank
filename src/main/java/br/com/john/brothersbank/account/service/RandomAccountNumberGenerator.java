@@ -1,6 +1,6 @@
-package br.com.john.brothersbank.service.impl;
+package br.com.john.brothersbank.account.service;
 
-import br.com.john.brothersbank.service.IAccountNumberGenerator;
+import br.com.john.brothersbank.account.service.impl.IAccountNumberGenerator;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;

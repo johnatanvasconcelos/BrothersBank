@@ -1,12 +1,16 @@
-package br.com.john.brothersbank.models;
+package br.com.john.brothersbank.account.model;
 
 import br.com.john.brothersbank.exception.InsufficientFundsException;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 
 import java.math.BigDecimal;
 
-public class CheckingAccount extends BankAccount{
+@Entity
+@Table(name = "checking_account")
+public class CheckingAccount extends BankAccount {
     public static final BigDecimal MAINTENANCE_FEE = new BigDecimal("10.00");
-    private static final String typeAccount = "Conta Corrente";
+    private static final AccountType typeAccount = AccountType.CHECKING_ACCOUNT;
 
 
     public CheckingAccount(String ownerName) {

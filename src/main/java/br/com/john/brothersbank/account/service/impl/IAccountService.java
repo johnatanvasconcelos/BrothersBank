@@ -1,6 +1,6 @@
-package br.com.john.brothersbank.service;
+package br.com.john.brothersbank.account.service.impl;
 
-import br.com.john.brothersbank.models.BankAccount;
+import br.com.john.brothersbank.account.model.BankAccount;
 
 import java.util.List;
 import java.util.Optional;
