@@ -16,6 +16,7 @@ public class SavingsAccountMapper {
         entity.setAccountNumber(dto.accountNumber());
         entity.setBalance(dto.initialBalance());
         entity.setOwnerName(dto.ownerName());
+        entity.setOwnerId(dto.ownerId());
         entity.setInterestRate(dto.interestRate());
         return entity;
     }
