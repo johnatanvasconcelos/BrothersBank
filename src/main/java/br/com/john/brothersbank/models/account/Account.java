@@ -1,10 +1,9 @@
-package br.com.john.brothersbank.model;
+package br.com.john.brothersbank.models.account;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 
 @Entity
 @Table(name = "accounts")
@@ -30,6 +29,14 @@ public abstract class Account {
 
     @Column(name = "owner_id")
     private Long ownerId;
+
+    @Column(name = "account_type")
+    @Enumerated(EnumType.STRING)
+    private AccountType accountType;
+
+    @Convert(converter = BooleanToStringConverter.class)
+    @Column(name = "status")
+    private Boolean active;
 
     public abstract void withdraw (BigDecimal amount);
 

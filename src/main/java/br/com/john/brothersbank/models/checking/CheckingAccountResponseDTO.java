@@ -1,4 +1,4 @@
-package br.com.john.brothersbank.model.checking.dto;
+package br.com.john.brothersbank.models.checking;
 
 import java.math.BigDecimal;
 

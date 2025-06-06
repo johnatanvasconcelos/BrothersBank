@@ -1,9 +1,7 @@
-package br.com.john.brothersbank.model.checking.mappers;
+package br.com.john.brothersbank.models.checking;
 
 
-import br.com.john.brothersbank.model.checking.CheckingAccount;
-import br.com.john.brothersbank.model.checking.dto.CheckingAccountRequestDTO;
-import br.com.john.brothersbank.model.checking.dto.CheckingAccountResponseDTO;
+import br.com.john.brothersbank.models.account.AccountType;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -20,6 +18,7 @@ public class CheckingAccountMapper {
         entity.setOwnerName(dto.ownerName());
         entity.setOwnerId(dto.ownerId());
         entity.setOverdraftLimit(dto.overdraftLimit());
+        entity.setAccountType((AccountType.CHECKING));
         return entity;
     }
 

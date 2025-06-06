@@ -1,4 +1,4 @@
-package br.com.john.brothersbank.model.checking.dto;
+package br.com.john.brothersbank.models.checking;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

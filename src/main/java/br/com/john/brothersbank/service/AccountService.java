@@ -1,18 +1,22 @@
 package br.com.john.brothersbank.service;
 
-import br.com.john.brothersbank.model.Account;
-import br.com.john.brothersbank.model.checking.CheckingAccount;
-import br.com.john.brothersbank.model.checking.dto.CheckingAccountRequestDTO;
-import br.com.john.brothersbank.model.checking.mappers.CheckingAccountMapper;
-import br.com.john.brothersbank.model.savings.SavingsAccount;
-import br.com.john.brothersbank.model.savings.dto.SavingsAccountRequestDTO;
-import br.com.john.brothersbank.model.savings.mappers.SavingsAccountMapper;
+import br.com.john.brothersbank.models.account.Account;
+import br.com.john.brothersbank.models.account.AccountDetailsDTO;
+import br.com.john.brothersbank.models.checking.CheckingAccount;
+import br.com.john.brothersbank.models.checking.CheckingAccountRequestDTO;
+import br.com.john.brothersbank.models.checking.CheckingAccountMapper;
+import br.com.john.brothersbank.models.savings.SavingsAccount;
+import br.com.john.brothersbank.models.savings.SavingsAccountRequestDTO;
+import br.com.john.brothersbank.models.savings.SavingsAccountMapper;
 import br.com.john.brothersbank.repository.AccountRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 @Service
 public class AccountService {
@@ -66,5 +70,9 @@ public class AccountService {
     public SavingsAccount createSavingsAccount(SavingsAccountRequestDTO dto){
         SavingsAccount savingsAccount = savingsAccountMapper.toEntity(dto);
         return repository.save(savingsAccount);
+    }
+
+    public Page<Account> listActiveAccounts(Pageable pageable){
+        return repository.findAllByActiveTrue(pageable);
     }
 }
