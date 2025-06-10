@@ -1,14 +1,11 @@
-package br.com.john.brothersbank.service;
+package br.com.john.brothersbank.models.account;
 
-import br.com.john.brothersbank.models.account.Account;
-import br.com.john.brothersbank.models.account.AccountDetailsDTO;
 import br.com.john.brothersbank.models.checking.CheckingAccount;
 import br.com.john.brothersbank.models.checking.CheckingAccountRequestDTO;
 import br.com.john.brothersbank.models.checking.CheckingAccountMapper;
 import br.com.john.brothersbank.models.savings.SavingsAccount;
 import br.com.john.brothersbank.models.savings.SavingsAccountRequestDTO;
 import br.com.john.brothersbank.models.savings.SavingsAccountMapper;
-import br.com.john.brothersbank.repository.AccountRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -16,7 +13,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.util.Optional;
 
 @Service
 public class AccountService {

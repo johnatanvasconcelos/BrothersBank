@@ -1,7 +1,9 @@
 package br.com.john.brothersbank.models.checking;
 
 
+import br.com.john.brothersbank.models.account.Account;
 import br.com.john.brothersbank.models.account.AccountType;
+import br.com.john.brothersbank.models.account.AccountUpdateDTO;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -35,5 +37,15 @@ public class CheckingAccountMapper {
                 entity.getOwnerId(),
                 entity.getOverdraftLimit()
         );
+    }
+
+    public void updateEntity(CheckingAccount entity, CheckingAccountUpdateDTO dto){
+        if (dto.getOwnerName() != null && !dto.getOwnerName().trim().isEmpty()){
+            entity.setOwnerName(dto.getOwnerName());
+        }
+
+        if (dto.getOverdraftLimit() != null) {
+            entity.setOverdraftLimit(dto.getOverdraftLimit());
+        }
     }
 }
