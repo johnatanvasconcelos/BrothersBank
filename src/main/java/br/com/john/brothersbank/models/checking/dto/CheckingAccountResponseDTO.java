@@ -10,7 +10,6 @@ public record CheckingAccountResponseDTO(
         BigDecimal balance,
         String ownerName,
         Long ownerId,
-
         @JsonProperty("status")
         String active,
         BigDecimal overdraftLimit) {

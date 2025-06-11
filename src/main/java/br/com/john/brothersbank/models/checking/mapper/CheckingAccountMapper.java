@@ -1,6 +1,5 @@
 package br.com.john.brothersbank.models.checking.mapper;
 
-
 import br.com.john.brothersbank.models.account.entity.AccountType;
 import br.com.john.brothersbank.models.checking.dto.CheckingAccountRequestDTO;
 import br.com.john.brothersbank.models.checking.dto.CheckingAccountResponseDTO;
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CheckingAccountMapper {
-
     // Mapeando de DTO de criação para Entity
     public CheckingAccount toEntity(CheckingAccountRequestDTO dto){
         if (dto == null){

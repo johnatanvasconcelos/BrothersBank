@@ -8,6 +8,8 @@ import br.com.john.brothersbank.models.checking.dto.CheckingAccountUpdateDTO;
 import br.com.john.brothersbank.models.checking.entity.CheckingAccount;
 import br.com.john.brothersbank.models.checking.mapper.CheckingAccountMapper;
 import br.com.john.brothersbank.models.checking.service.CheckingAccountService;
+import br.com.john.brothersbank.models.savings.service.SavingsAccountService;
+import br.com.john.brothersbank.models.savings.dto.SavingsAccountUpdateDTO;
 import br.com.john.brothersbank.models.savings.entity.SavingsAccount;
 import br.com.john.brothersbank.models.savings.dto.SavingsAccountRequestDTO;
 import br.com.john.brothersbank.models.savings.dto.SavingsAccountResponseDTO;
@@ -31,6 +33,9 @@ public class AccountController {
 
     @Autowired
     private CheckingAccountService checkingAccountService;
+
+    @Autowired
+    private SavingsAccountService savingsAccountService;
 
     @Autowired
     private CheckingAccountMapper checkingAccountMapper;
@@ -68,11 +73,15 @@ public class AccountController {
     @PutMapping("checking/{id}")
     public ResponseEntity<CheckingAccountResponseDTO> update(@PathVariable Long id, @RequestBody CheckingAccountUpdateDTO updateDTO){
         CheckingAccount updatedAccount = checkingAccountService.updateAccount(id, updateDTO);
-
         CheckingAccountResponseDTO responseDTO = checkingAccountMapper.toDTO(updatedAccount);
-
         return ResponseEntity.ok(responseDTO);
+    }
 
+    @PutMapping("savings/{id}")
+    public ResponseEntity<SavingsAccountResponseDTO> update(@PathVariable Long id, @RequestBody SavingsAccountUpdateDTO updateDTO){
+        SavingsAccount savingsAccount = savingsAccountService.updateAccount(id, updateDTO);
+        SavingsAccountResponseDTO responseDTO = savingsAccountMapper.toDTO(savingsAccount);
+        return ResponseEntity.ok(responseDTO);
     }
 }
 

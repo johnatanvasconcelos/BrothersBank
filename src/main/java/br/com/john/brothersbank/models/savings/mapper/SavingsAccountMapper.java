@@ -3,6 +3,7 @@ package br.com.john.brothersbank.models.savings.mapper;
 import br.com.john.brothersbank.models.account.entity.AccountType;
 import br.com.john.brothersbank.models.savings.dto.SavingsAccountRequestDTO;
 import br.com.john.brothersbank.models.savings.dto.SavingsAccountResponseDTO;
+import br.com.john.brothersbank.models.savings.dto.SavingsAccountUpdateDTO;
 import br.com.john.brothersbank.models.savings.entity.SavingsAccount;
 import org.springframework.stereotype.Component;
 
@@ -35,7 +36,17 @@ public class SavingsAccountMapper {
                 entity.getBalance(),
                 entity.getOwnerName(),
                 entity.getOwnerId(),
+                entity.getActive() ? "Ativa" : "Inativa",
                 entity.getInterestRate()
         );
+    }
+
+    public void updateEntity(SavingsAccount entity, SavingsAccountUpdateDTO dto){
+        if (dto.getOwnerName() != null && !dto.getOwnerName().trim().isEmpty()){
+            entity.setOwnerName(dto.getOwnerName());
+        }
+        if (dto.getInterestRate() != null) {
+            entity.setInterestRate(dto.getInterestRate());
+        }
     }
 }
