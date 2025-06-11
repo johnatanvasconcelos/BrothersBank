@@ -1,12 +1,11 @@
-package br.com.john.brothersbank.models.checking;
+package br.com.john.brothersbank.models.savings.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.math.BigDecimal;
 
-public record CheckingAccountRequestDTO(
-
+public record SavingsAccountRequestDTO(
         @NotBlank
         String accountNumber,
         @NotNull
@@ -16,6 +15,6 @@ public record CheckingAccountRequestDTO(
         @NotNull
         Long ownerId,
         @NotNull
-        BigDecimal overdraftLimit
+        BigDecimal interestRate
 ) {
 }

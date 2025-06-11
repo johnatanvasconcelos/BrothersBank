@@ -1,4 +1,4 @@
-package br.com.john.brothersbank.models.account;
+package br.com.john.brothersbank.config;
 
 import jakarta.persistence.AttributeConverter;
 

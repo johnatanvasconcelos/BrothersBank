@@ -1,4 +1,4 @@
-package br.com.john.brothersbank.models.account;
+package br.com.john.brothersbank.models.account.entity;
 
 public enum AccountType {
     CHECKING,

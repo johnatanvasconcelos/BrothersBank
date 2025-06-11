@@ -1,6 +1,9 @@
-package br.com.john.brothersbank.models.savings;
+package br.com.john.brothersbank.models.savings.mapper;
 
-import br.com.john.brothersbank.models.account.AccountType;
+import br.com.john.brothersbank.models.account.entity.AccountType;
+import br.com.john.brothersbank.models.savings.dto.SavingsAccountRequestDTO;
+import br.com.john.brothersbank.models.savings.dto.SavingsAccountResponseDTO;
+import br.com.john.brothersbank.models.savings.entity.SavingsAccount;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -17,6 +20,7 @@ public class SavingsAccountMapper {
         entity.setOwnerId(dto.ownerId());
         entity.setInterestRate(dto.interestRate());
         entity.setAccountType((AccountType.SAVINGS));
+        entity.setActive(true);
         return entity;
     }
 

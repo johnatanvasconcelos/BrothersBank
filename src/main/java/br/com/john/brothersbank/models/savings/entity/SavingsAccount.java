@@ -1,6 +1,6 @@
-package br.com.john.brothersbank.models.savings;
+package br.com.john.brothersbank.models.savings.entity;
 
-import br.com.john.brothersbank.models.account.Account;
+import br.com.john.brothersbank.models.account.entity.Account;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;

@@ -1,11 +1,13 @@
-package br.com.john.brothersbank.models.account;
+package br.com.john.brothersbank.models.account.service;
 
-import br.com.john.brothersbank.models.checking.CheckingAccount;
-import br.com.john.brothersbank.models.checking.CheckingAccountRequestDTO;
-import br.com.john.brothersbank.models.checking.CheckingAccountMapper;
-import br.com.john.brothersbank.models.savings.SavingsAccount;
-import br.com.john.brothersbank.models.savings.SavingsAccountRequestDTO;
-import br.com.john.brothersbank.models.savings.SavingsAccountMapper;
+import br.com.john.brothersbank.models.account.entity.Account;
+import br.com.john.brothersbank.models.account.repository.AccountRepository;
+import br.com.john.brothersbank.models.checking.entity.CheckingAccount;
+import br.com.john.brothersbank.models.checking.dto.CheckingAccountRequestDTO;
+import br.com.john.brothersbank.models.checking.mapper.CheckingAccountMapper;
+import br.com.john.brothersbank.models.savings.entity.SavingsAccount;
+import br.com.john.brothersbank.models.savings.dto.SavingsAccountRequestDTO;
+import br.com.john.brothersbank.models.savings.mapper.SavingsAccountMapper;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

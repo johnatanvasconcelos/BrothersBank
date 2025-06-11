@@ -1,5 +1,6 @@
-package br.com.john.brothersbank.models.account;
+package br.com.john.brothersbank.models.account.entity;
 
+import br.com.john.brothersbank.config.BooleanToStringConverter;
 import jakarta.persistence.*;
 import lombok.*;
 

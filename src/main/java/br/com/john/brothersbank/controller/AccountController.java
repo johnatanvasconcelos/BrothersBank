@@ -1,14 +1,18 @@
 package br.com.john.brothersbank.controller;
 
-import br.com.john.brothersbank.models.account.Account;
-import br.com.john.brothersbank.models.account.AccountDetailsDTO;
-import br.com.john.brothersbank.models.account.AccountUpdateDTO;
-import br.com.john.brothersbank.models.checking.*;
-import br.com.john.brothersbank.models.savings.SavingsAccount;
-import br.com.john.brothersbank.models.savings.SavingsAccountRequestDTO;
-import br.com.john.brothersbank.models.savings.SavingsAccountResponseDTO;
-import br.com.john.brothersbank.models.savings.SavingsAccountMapper;
-import br.com.john.brothersbank.models.account.AccountService;
+import br.com.john.brothersbank.models.account.entity.Account;
+import br.com.john.brothersbank.models.account.dto.AccountDetailsDTO;
+import br.com.john.brothersbank.models.checking.dto.CheckingAccountRequestDTO;
+import br.com.john.brothersbank.models.checking.dto.CheckingAccountResponseDTO;
+import br.com.john.brothersbank.models.checking.dto.CheckingAccountUpdateDTO;
+import br.com.john.brothersbank.models.checking.entity.CheckingAccount;
+import br.com.john.brothersbank.models.checking.mapper.CheckingAccountMapper;
+import br.com.john.brothersbank.models.checking.service.CheckingAccountService;
+import br.com.john.brothersbank.models.savings.entity.SavingsAccount;
+import br.com.john.brothersbank.models.savings.dto.SavingsAccountRequestDTO;
+import br.com.john.brothersbank.models.savings.dto.SavingsAccountResponseDTO;
+import br.com.john.brothersbank.models.account.service.AccountService;
+import br.com.john.brothersbank.models.savings.mapper.SavingsAccountMapper;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

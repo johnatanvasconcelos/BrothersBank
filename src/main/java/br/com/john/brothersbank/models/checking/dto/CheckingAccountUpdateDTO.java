@@ -1,6 +1,6 @@
-package br.com.john.brothersbank.models.checking;
+package br.com.john.brothersbank.models.checking.dto;
 
-import br.com.john.brothersbank.models.account.AccountUpdateDTO;
+import br.com.john.brothersbank.models.account.dto.AccountUpdateDTO;
 import lombok.Getter;
 import lombok.Setter;
 

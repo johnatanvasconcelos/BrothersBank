@@ -1,5 +1,6 @@
-package br.com.john.brothersbank.models.account;
+package br.com.john.brothersbank.models.account.repository;
 
+import br.com.john.brothersbank.models.account.entity.Account;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

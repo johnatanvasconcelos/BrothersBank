@@ -1,5 +1,9 @@
-package br.com.john.brothersbank.models.checking;
+package br.com.john.brothersbank.models.checking.service;
 
+import br.com.john.brothersbank.models.checking.mapper.CheckingAccountMapper;
+import br.com.john.brothersbank.models.checking.dto.CheckingAccountUpdateDTO;
+import br.com.john.brothersbank.models.checking.entity.CheckingAccount;
+import br.com.john.brothersbank.models.checking.repository.CheckingAccountRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,14 +1,25 @@
-package br.com.john.brothersbank.models.account;
+package br.com.john.brothersbank.models.account.dto;
+
+import br.com.john.brothersbank.models.account.entity.AccountType;
+import br.com.john.brothersbank.models.account.entity.Account;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.math.BigDecimal;
 
 public record AccountDetailsDTO(
+        @JsonProperty("ID da conta")
         Long id,
+        @JsonProperty("Número da Conta")
         String accountNumber,
+        @JsonProperty("Saldo da Conta")
         BigDecimal balance,
+        @JsonProperty("Nome do titular")
         String ownerName,
+        @JsonProperty("ID do titular")
         Long ownerId,
-        Boolean active,
+        @JsonProperty("Status da Conta")
+        String active,
+        @JsonProperty("Tipo da Conta")
         String accountType
 ) {
     public AccountDetailsDTO(Account account){
@@ -17,7 +28,7 @@ public record AccountDetailsDTO(
                 account.getBalance(),
                 account.getOwnerName(),
                 account.getOwnerId(),
-                account.getActive(),
+                mapActiveToStatus(account.getActive()),
                 mapAccountTypeToDisplayString(account.getAccountType()));
     }
 
@@ -30,5 +41,9 @@ public record AccountDetailsDTO(
             case SAVINGS -> "Conta poupança";
             default -> "Tipo desconhecido";
         };
+    }
+
+    private static String mapActiveToStatus(Boolean active){
+        return active ? "Ativa" : "Inativa";
     }
 }
