@@ -73,4 +73,11 @@ public class AccountService {
     public Page<Account> listActiveAccounts(Pageable pageable){
         return repository.findAllByActiveTrue(pageable);
     }
+
+    @Transactional
+    public Account deactivateAccount(Long id) {
+        Account account = getAccountById(id);
+        account.setActive(false);
+        return repository.save(account);
+    }
 }

@@ -83,5 +83,11 @@ public class AccountController {
         SavingsAccountResponseDTO responseDTO = savingsAccountMapper.toDTO(savingsAccount);
         return ResponseEntity.ok(responseDTO);
     }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> delete(@PathVariable Long id){
+        Account deactivatedAccount = accountService.deactivateAccount(id);
+        return ResponseEntity.ok("Conta desativada com sucesso");
+    }
 }
 
