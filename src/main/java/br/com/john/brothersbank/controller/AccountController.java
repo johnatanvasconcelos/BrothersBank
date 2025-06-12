@@ -70,21 +70,21 @@ public class AccountController {
         return ResponseEntity.ok(activeAccountsDTOPage);
     }
 
-    @PutMapping("checking/{id}")
+    @PutMapping("/checking/{id}")
     public ResponseEntity<CheckingAccountResponseDTO> update(@PathVariable Long id, @RequestBody CheckingAccountUpdateDTO updateDTO){
         CheckingAccount updatedAccount = checkingAccountService.updateAccount(id, updateDTO);
         CheckingAccountResponseDTO responseDTO = checkingAccountMapper.toDTO(updatedAccount);
         return ResponseEntity.ok(responseDTO);
     }
 
-    @PutMapping("savings/{id}")
+    @PutMapping("/savings/{id}")
     public ResponseEntity<SavingsAccountResponseDTO> update(@PathVariable Long id, @RequestBody SavingsAccountUpdateDTO updateDTO){
         SavingsAccount savingsAccount = savingsAccountService.updateAccount(id, updateDTO);
         SavingsAccountResponseDTO responseDTO = savingsAccountMapper.toDTO(savingsAccount);
         return ResponseEntity.ok(responseDTO);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<String> delete(@PathVariable Long id){
         Account deactivatedAccount = accountService.deactivateAccount(id);
         return ResponseEntity.ok("Conta desativada com sucesso");
