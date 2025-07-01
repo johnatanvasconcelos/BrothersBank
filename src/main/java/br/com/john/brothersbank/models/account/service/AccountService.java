@@ -15,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.Optional;
 
 @Service
 public class AccountService {
@@ -78,6 +79,25 @@ public class AccountService {
     public Account deactivateAccount(Long id) {
         Account account = getAccountById(id);
         account.setActive(false);
+        return repository.save(account);
+    }
+
+    @Transactional
+    public Account deposit(Long accountId, BigDecimal amount){
+
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("O valor do depósito deve ser maior que zero");
+        }
+
+        Optional<Account> optionalAccount = repository.findById(accountId);
+
+        if (optionalAccount.isEmpty()) {
+            throw new IllegalArgumentException("Conta não encontrada com o id " + accountId);
+        }
+
+        Account account = optionalAccount.get();
+        account.setBalance(account.getBalance().add(amount));
+
         return repository.save(account);
     }
 }

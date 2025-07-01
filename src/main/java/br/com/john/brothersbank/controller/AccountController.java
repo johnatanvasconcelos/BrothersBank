@@ -1,5 +1,6 @@
 package br.com.john.brothersbank.controller;
 
+import br.com.john.brothersbank.models.account.dto.DepositRequestDTO;
 import br.com.john.brothersbank.models.account.entity.Account;
 import br.com.john.brothersbank.models.account.dto.AccountDetailsDTO;
 import br.com.john.brothersbank.models.checking.dto.CheckingAccountRequestDTO;
@@ -23,6 +24,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
 
 @RestController
 @RequestMapping("/api/accounts")
@@ -88,6 +91,14 @@ public class AccountController {
     public ResponseEntity<String> delete(@PathVariable Long id){
         Account deactivatedAccount = accountService.deactivateAccount(id);
         return ResponseEntity.ok("Conta desativada com sucesso");
+    }
+
+    @PostMapping("/{id}/deposit")
+    public ResponseEntity<AccountDetailsDTO> deposit(@PathVariable Long id, @Valid @RequestBody DepositRequestDTO requestDto){
+        BigDecimal amount = requestDto.amount();
+
+        Account updateAccount = accountService.deposit(id, amount);
+        return ResponseEntity.ok(new AccountDetailsDTO(updateAccount));
     }
 }
 
