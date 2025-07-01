@@ -1,4 +1,4 @@
-# 🏥 BrothersBank API
+# 🏛 BrothersBank API
 
 ## Visão geral do Projeto:
 > **Descrição**: Aplicação bancária fictícia com contas corrente e poupança, operações financeiras, validações de dados de entrada, usuários e permissões.
@@ -57,7 +57,7 @@ mvn spring-boot:run
 ```
 
 4. *Acesse a documentação*
-: ***Após iniciar a aplicação, acesse pelo navegador, os links abaixo para ler a documentação da API***
+   : ***Após iniciar a aplicação, acesse pelo navegador, os links abaixo para ler a documentação da API***
 
 - Swagger UI: http://localhost:8080/swagger-ui.html
 - API Docs: http://localhost:8080/v3/api-docs
@@ -133,7 +133,7 @@ src/
 ## 🏗️ Arquitetura do Projeto
 
 > O projeto segue os princípios de **arquitetura em camadas** com **separação por domínio de negócio**
-> 
+
 ### Principais Padrões Implementados
 
 * **Inheritance Pattern** - Herança entre Account, CheckingAccount e SavingsAccount
@@ -164,46 +164,6 @@ A estrutura reflete operações bancárias reais com separação clara:
 - `DELETE /api/accounts/checking/{id}` - Atualizar dados de uma conta-corrente
 - `DELETE /api/accounts/savings/{id}` - Atualizar dados de uma conta poupança
 - `DELETE /api/accounts/{id}` - Deletar uma conta (Tornar inativa)
-
-[//]: # ()
-[//]: # (## 📋 Validações Implementadas)
-
-[//]: # ()
-[//]: # (- ✅ Validação de email único)
-
-[//]: # (## 🔧 Configurações Adicionais)
-
-[//]: # ()
-[//]: # (### Profiles)
-
-[//]: # (- `dev` - Desenvolvimento &#40;H2 database&#41;)
-
-[//]: # (- `prod` - Produção &#40;MySQL&#41;)
-
-[//]: # (- `test` - Testes &#40;H2 in-memory&#41;)
-
-[//]: # ()
-[//]: # (### Variáveis de Ambiente)
-
-[//]: # (```bash)
-
-[//]: # (# JWT)
-
-[//]: # (JWT_SECRET=sua_chave_secreta_jwt)
-
-[//]: # (JWT_EXPIRATION=86400000)
-
-[//]: # ()
-[//]: # (# Database)
-
-[//]: # (DB_URL=jdbc:mysql://localhost:3306/cleanmed)
-
-[//]: # (DB_USER=usuario)
-
-[//]: # (DB_PASSWORD=senha)
-
-[//]: # (```)
-[//]: # ()
 
 ## 🤝 Contribuindo
 

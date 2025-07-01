@@ -100,5 +100,6 @@ public class AccountController {
         Account updateAccount = accountService.deposit(id, amount);
         return ResponseEntity.ok(new AccountDetailsDTO(updateAccount));
     }
+
 }
 
