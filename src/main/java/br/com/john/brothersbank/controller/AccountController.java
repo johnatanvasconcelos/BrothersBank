@@ -1,6 +1,7 @@
 package br.com.john.brothersbank.controller;
 
 import br.com.john.brothersbank.models.account.dto.DepositRequestDTO;
+import br.com.john.brothersbank.models.account.dto.WithdrawRequestDTO;
 import br.com.john.brothersbank.models.account.entity.Account;
 import br.com.john.brothersbank.models.account.dto.AccountDetailsDTO;
 import br.com.john.brothersbank.models.checking.dto.CheckingAccountRequestDTO;
@@ -97,7 +98,15 @@ public class AccountController {
     public ResponseEntity<AccountDetailsDTO> deposit(@PathVariable Long id, @Valid @RequestBody DepositRequestDTO requestDto){
         BigDecimal amount = requestDto.amount();
 
-        Account updateAccount = accountService.deposit(id, amount);
+        Account updateAccount = accountService.performDeposit(id, amount);
+        return ResponseEntity.ok(new AccountDetailsDTO(updateAccount));
+    }
+
+    @PostMapping("/{id}/withdraw")
+    public ResponseEntity<AccountDetailsDTO> withdraw(@PathVariable Long id, @Valid @RequestBody WithdrawRequestDTO requestDTO){
+        BigDecimal amount = requestDTO.amount();
+
+        Account updateAccount = accountService.performWithdrawal(id, amount);
         return ResponseEntity.ok(new AccountDetailsDTO(updateAccount));
     }
 

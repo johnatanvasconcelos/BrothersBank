@@ -19,13 +19,4 @@ import java.math.BigDecimal;
 public class SavingsAccount extends Account {
 
     private BigDecimal interestRate = new BigDecimal("0.005");
-
-    @Override
-    public void withdraw(BigDecimal amount) {
-        if (this.balance.compareTo(amount) >= 0) {
-            this.balance = this.balance.subtract(amount);
-        } else {
-            throw new IllegalArgumentException("Saldo insuficiente");
-        }
-    }
 }

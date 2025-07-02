@@ -19,14 +19,4 @@ import java.math.BigDecimal;
 public class CheckingAccount extends Account {
 
     private BigDecimal overdraftLimit = new BigDecimal("500.00");
-
-    @Override
-    public void withdraw(BigDecimal amount) {
-
-        if(this.balance.add(this.overdraftLimit).compareTo(amount) >= 0) {
-            this.balance = this.balance.subtract(amount);
-        } else {
-            throw new IllegalArgumentException("Saldo insuficiente");
-        }
-    }
 }

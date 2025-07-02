@@ -29,34 +29,8 @@ public class AccountService {
     @Autowired
     private SavingsAccountMapper savingsAccountMapper;
 
-    @Transactional
-    public Account performWithdrawal(Long id, BigDecimal amount) {
-        Account account = getAccountById(id);
-        account.withdraw(amount);
-
-        return repository.save(account);
-    }
-
     public Account getAccountById(Long id){
         return repository.findById(id).orElseThrow(() -> new IllegalArgumentException("Conta não encontrada"));
-    }
-
-    @Transactional
-    public void performTransfer(Long sourceId, Long targetId, BigDecimal amount){
-        if (amount.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException("O valor da transferência deve ser maior que zero");
-
-        Account sourceAccount = getAccountById(sourceId);
-        Account targetAccount = getAccountById(targetId);
-
-        if (sourceAccount instanceof SavingsAccount){
-            throw new UnsupportedOperationException("Conta poupança não pode realizar transferência");
-        }
-
-        sourceAccount.withdraw(amount);
-        targetAccount.deposit(amount);
-
-        repository.save(sourceAccount);
-        repository.save(targetAccount);
     }
 
     @Transactional
@@ -83,7 +57,7 @@ public class AccountService {
     }
 
     @Transactional
-    public Account deposit(Long accountId, BigDecimal amount){
+    public Account performDeposit(Long accountId, BigDecimal amount){
 
         if (amount.compareTo(BigDecimal.ZERO) <= 0) {
             throw new IllegalArgumentException("O valor do depósito deve ser maior que zero");
@@ -97,6 +71,25 @@ public class AccountService {
 
         Account account = optionalAccount.get();
         account.setBalance(account.getBalance().add(amount));
+
+        return repository.save(account);
+    }
+
+    @Transactional
+    public Account performWithdrawal(Long accountId, BigDecimal amount) {
+
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("O valor do saque deve ser maior que zero");
+        }
+
+        Optional<Account> optionalAccount = repository.findById(accountId);
+
+        if (optionalAccount.isEmpty()) {
+            throw new IllegalArgumentException("Conta não encontrada com o id " + accountId);
+        }
+
+        Account account = optionalAccount.get();
+        account.setBalance(account.getBalance().subtract(amount));
 
         return repository.save(account);
     }

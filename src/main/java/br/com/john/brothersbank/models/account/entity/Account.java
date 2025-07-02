@@ -38,11 +38,4 @@ public abstract class Account {
     @Convert(converter = BooleanToStringConverter.class)
     @Column(name = "status")
     private Boolean active;
-
-    public abstract void withdraw (BigDecimal amount);
-
-    public void deposit(BigDecimal amount){
-        if (amount.compareTo(BigDecimal.ZERO) <= 0) throw new IllegalArgumentException("O valor do depósito deve ser maior que zero");
-        this.balance = this.balance.add(amount);
-    }
 }
