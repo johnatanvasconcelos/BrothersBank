@@ -1,9 +1,7 @@
 package br.com.john.brothersbank.controller;
 
-import br.com.john.brothersbank.models.account.dto.DepositRequestDTO;
-import br.com.john.brothersbank.models.account.dto.WithdrawRequestDTO;
+import br.com.john.brothersbank.models.account.dto.*;
 import br.com.john.brothersbank.models.account.entity.Account;
-import br.com.john.brothersbank.models.account.dto.AccountDetailsDTO;
 import br.com.john.brothersbank.models.checking.dto.CheckingAccountRequestDTO;
 import br.com.john.brothersbank.models.checking.dto.CheckingAccountResponseDTO;
 import br.com.john.brothersbank.models.checking.dto.CheckingAccountUpdateDTO;
@@ -108,6 +106,16 @@ public class AccountController {
 
         Account updateAccount = accountService.performWithdrawal(id, amount);
         return ResponseEntity.ok(new AccountDetailsDTO(updateAccount));
+    }
+
+    @PostMapping("/transfer")
+    public ResponseEntity<TransferResponseDTO> transfer(@Valid @RequestBody TransferRequestDTO requestDTO){
+        TransferResponseDTO responseDTO = accountService.performTransfer(
+                requestDTO.sourceAccountId(),
+                requestDTO.destinationAccountId(),
+                requestDTO.amount()
+        );
+        return ResponseEntity.ok(responseDTO);
     }
 
 }

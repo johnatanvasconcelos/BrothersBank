@@ -1,5 +1,8 @@
 package br.com.john.brothersbank.models.account.service;
 
+import br.com.john.brothersbank.exception.InsufficientFundsException;
+import br.com.john.brothersbank.models.account.dto.AccountDetailsDTO;
+import br.com.john.brothersbank.models.account.dto.TransferResponseDTO;
 import br.com.john.brothersbank.models.account.entity.Account;
 import br.com.john.brothersbank.models.account.repository.AccountRepository;
 import br.com.john.brothersbank.models.checking.entity.CheckingAccount;
@@ -93,4 +96,37 @@ public class AccountService {
 
         return repository.save(account);
     }
+
+    @Transactional
+    public TransferResponseDTO performTransfer(Long sourceAccountId, Long destinationAccountId, BigDecimal amount) {
+        if (amount.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("O valor da transferência deve ser positivo.");
+        }
+        if (sourceAccountId.equals(destinationAccountId)) {
+            throw new IllegalArgumentException("Conta de origem e destino não podem ser as mesmas.");
+        }
+
+        Account sourceAccount = repository.findById(sourceAccountId)
+                .orElseThrow(() -> new IllegalArgumentException("Conta de origem não encontrada"));
+        Account destinationAccount = repository.findById(destinationAccountId)
+                .orElseThrow(() -> new IllegalArgumentException("Conta de destino não encontrada"));
+
+        if (sourceAccount.getBalance().compareTo(amount) < 0) {
+            throw new InsufficientFundsException("Saldo insuficiente na conta de origem.");
+        }
+
+        sourceAccount.setBalance(sourceAccount.getBalance().subtract(amount));
+        Account updateSourceAccount = repository.save(sourceAccount);
+
+        destinationAccount.setBalance(destinationAccount.getBalance().add(amount));
+        Account updateDestinationAccount = repository.save(destinationAccount);
+
+        // Convertendo as contas atualizadas para AccountDetailsDTO
+        AccountDetailsDTO sourceDetails = new AccountDetailsDTO(updateSourceAccount);
+        AccountDetailsDTO destinationDetails = new AccountDetailsDTO(updateDestinationAccount);
+
+        return new TransferResponseDTO(sourceDetails, destinationDetails);
+    }
+
+
 }
