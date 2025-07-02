@@ -11,7 +11,6 @@ public record TransferRequestDTO(
         @NotNull(message = "O ID da conta de destino é obrigatório.")
         Long destinationAccountId,
         @NotNull(message = "O valor da transferência é obrigatório.")
-        @Positive(message = "O valor da transferência deve ser positivo.")
         BigDecimal amount
 ) {
 }

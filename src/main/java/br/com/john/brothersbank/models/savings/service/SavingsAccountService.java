@@ -23,6 +23,10 @@ public class SavingsAccountService {
         SavingsAccount existingAccount = repository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Conta não encontrada"));
 
+        if(!existingAccount.getActive()){
+            throw new IllegalArgumentException("Esta conta está desativada");
+        }
+
         mapper.updateEntity(existingAccount, updateDTO);
 
         return repository.save(existingAccount);

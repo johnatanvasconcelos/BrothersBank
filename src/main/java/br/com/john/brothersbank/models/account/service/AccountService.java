@@ -73,6 +73,11 @@ public class AccountService {
         }
 
         Account account = optionalAccount.get();
+
+        if(!account.getActive()){
+            throw new IllegalArgumentException("Esta conta está desativada");
+        }
+
         account.setBalance(account.getBalance().add(amount));
 
         return repository.save(account);
@@ -92,6 +97,15 @@ public class AccountService {
         }
 
         Account account = optionalAccount.get();
+
+        if(!account.getActive()){
+            throw new IllegalArgumentException("Esta conta está desativada");
+        }
+
+        if (account.getBalance().compareTo(amount) < 0) {
+            throw new InsufficientFundsException("Saldo insuficiente na conta.");
+        }
+
         account.setBalance(account.getBalance().subtract(amount));
 
         return repository.save(account);
@@ -100,7 +114,7 @@ public class AccountService {
     @Transactional
     public TransferResponseDTO performTransfer(Long sourceAccountId, Long destinationAccountId, BigDecimal amount) {
         if (amount.compareTo(BigDecimal.ZERO) <= 0) {
-            throw new IllegalArgumentException("O valor da transferência deve ser positivo.");
+            throw new IllegalArgumentException("O valor da transferência deve ser maior que zero.");
         }
         if (sourceAccountId.equals(destinationAccountId)) {
             throw new IllegalArgumentException("Conta de origem e destino não podem ser as mesmas.");
@@ -113,6 +127,14 @@ public class AccountService {
 
         if (sourceAccount.getBalance().compareTo(amount) < 0) {
             throw new InsufficientFundsException("Saldo insuficiente na conta de origem.");
+        }
+
+        if(!sourceAccount.getActive()){
+            throw new IllegalArgumentException("A conta de origem está desativada");
+        }
+
+        if(!destinationAccount.getActive()){
+            throw new IllegalArgumentException("A conta de destino está desativada");
         }
 
         sourceAccount.setBalance(sourceAccount.getBalance().subtract(amount));
